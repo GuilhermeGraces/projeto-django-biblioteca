@@ -1,0 +1,11 @@
+{% extends "biblioteca/base.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+    {% if user.is_authenticated %}
+        <h1>Olá, {{ user.username }}!</h1>
+    {% else %}
+        <h1>Olá, Visitante!</h1>
+    {% endif %}
+{% endblock %}
