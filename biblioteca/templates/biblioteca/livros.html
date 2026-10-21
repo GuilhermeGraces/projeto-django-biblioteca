@@ -1,0 +1,27 @@
+{% extends "biblioteca/base.html" %}
+
+{% block title %}Livros{% endblock %}
+
+{% block content %}
+    <h1>Livros</h1>
+
+    {% for livro in page_obj %}
+        <div class="livro">
+            <h2>{{livro.titulo}}</h2>
+            <p>Autor: {{livro.autor}}</p>
+            <p>Preço: {{livro.preco}}</p>
+        </div>
+    {% empty %}
+        <p>Nenhum livro cadastrado</p>
+    {% endfor %}
+    <nav class="paginacao">
+        {% if page_obj.has_previous %}
+            <a href="?page={{ page_obj.previous_page_number }}">Anterior</a>
+        {% endif %}
+        <span>Página {{page_obj.number}} de {{page_obj.paginator.num_pages}}</span>
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">Próxima</a>
+        {% endif %}
+    </nav>
+
+{% endblock %}

@@ -4,3 +4,15 @@ body {
     margin: 40px auto;
     padding: 0 16px;
 }
+
+nav{
+    background-color: #dcdf2f;
+    border-radius: 20px;
+    
+}
+nav a{
+    background-color: rgb(179, 179, 179);
+    color: purple;
+    text-decoration: none;
+    border-radius: 20px;
+}
