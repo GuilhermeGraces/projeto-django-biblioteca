@@ -10,6 +10,11 @@
             <h2>{{livro.titulo}}</h2>
             <p>Autor: {{livro.autor}}</p>
             <p>Preço: {{livro.preco}}</p>
+            <form hx-post="{% url 'deletar' livro.pk %}" hx-confirm="Tem certeza que deseja deletar {{livro.titulo}}?" hx-target="closest .livro" hx-swap="outerHTML">
+                {% csrf_token %}
+                <button type="submit">Deletar</button>
+            </form>
+            
         </div>
     {% empty %}
         <p>Nenhum livro cadastrado</p>
