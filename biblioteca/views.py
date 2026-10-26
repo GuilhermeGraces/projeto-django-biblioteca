@@ -28,5 +28,16 @@ def deletar(request, pk):
 
 def editar(request, pk):
     livro = get_object_or_404(Livro, pk=pk)
-    form= LivroForm(instance=livro)
-    return render(request, "biblioteca/partials/livro_form.html", {"form": form, "livro": livro})
+    if request.method == "POST":
+        form= LivroForm(request.POST, instance=livro)
+        if form.is_valid():
+            form.save()
+            return render(request, "biblioteca/partials/livro.html", {"livro":livro})
+    else:
+        form= LivroForm(instance=livro)
+    return render(request, "biblioteca/partials/livro_form.html", {"form": form, "livro":livro})
+
+
+
+
+    
