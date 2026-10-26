@@ -2,6 +2,7 @@ from django.shortcuts import get_object_or_404, redirect, render
 from django.views.decorators.http import require_POST
 from django.core.paginator import Paginator
 from django.http import HttpResponse
+from .forms import LivroForm
 
 from .models import Livro
 
@@ -24,3 +25,8 @@ def deletar(request, pk):
     livro= get_object_or_404(Livro, pk=pk)
     livro.delete()
     return HttpResponse("")
+
+def editar(request, pk):
+    livro = get_object_or_404(Livro, pk=pk)
+    form= LivroForm(instance=livro)
+    return render(request, "biblioteca/partials/livro_form.html", {"form": form, "livro": livro})
