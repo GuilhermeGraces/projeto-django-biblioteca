@@ -1,0 +1,7 @@
+<div class="livro">
+    <form hx-post="{% url 'editar' livro.pk %}" hx-target="closest .livro" hx-swap="outerHTML">
+        {% csrf_token %}
+        {{ form.as_p}}
+        <button type="submit">Salvar</button>
+    </form>
+</div>
