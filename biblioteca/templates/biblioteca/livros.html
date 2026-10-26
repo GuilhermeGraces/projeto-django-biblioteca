@@ -3,21 +3,33 @@
 {% block title %}Livros{% endblock %}
 
 {% block content %}
-    <h1>Livros</h1>
+    <h1 class="text-3xl font-bold mb-6">Livros</h1>
 
-    {% for livro in page_obj %}
-        {% include "biblioteca/partials/livro.html" %}
-    {% empty %}
-        <p>Nenhum livro cadastrado</p>
-    {% endfor %}
-    <nav class="paginacao">
-        {% if page_obj.has_previous %}
-            <a href="?page={{ page_obj.previous_page_number }}">Anterior</a>
-        {% endif %}
-        <span>Página {{page_obj.number}} de {{page_obj.paginator.num_pages}}</span>
-        {% if page_obj.has_next %}
-            <a href="?page={{ page_obj.next_page_number }}">Próxima</a>
-        {% endif %}
-    </nav>
+    <div class="flex flex-col gap-4">
+        {% for livro in page_obj %}
+            {% include "biblioteca/partials/livro.html" %}
+        {% empty %}
+            <div class="alert">Nenhum livro cadastrado.</div>
+        {% endfor %}
+    </div>
 
+    {% if page_obj.paginator.num_pages > 1 %}
+        <div class="flex justify-center mt-8">
+            <nav class="join">
+                {% if page_obj.has_previous %}
+                    <a href="?page={{ page_obj.previous_page_number }}" class="join-item btn">Anterior</a>
+                {% else %}
+                    <span class="join-item btn btn-disabled">Anterior</span>
+                {% endif %}
+
+                <span class="join-item btn no-animation">Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}</span>
+
+                {% if page_obj.has_next %}
+                    <a href="?page={{ page_obj.next_page_number }}" class="join-item btn">Próxima</a>
+                {% else %}
+                    <span class="join-item btn btn-disabled">Próxima</span>
+                {% endif %}
+            </nav>
+        </div>
+    {% endif %}
 {% endblock %}

@@ -1,4 +1,3 @@
-{% load static %}
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -9,8 +8,20 @@
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <script src="https://unpkg.com/htmx.org@2.0.4"></script>
 </head>
-<body>
-    <main>
+<body class="min-h-screen bg-base-200">
+    <header class="navbar bg-base-100 shadow-sm px-4">
+        <div class="flex-1">
+            <a href="{% url 'home' %}" class="btn btn-ghost text-xl">Biblioteca</a>
+        </div>
+        <nav class="flex-none">
+            <ul class="menu menu-horizontal gap-1">
+                <li><a href="{% url 'home' %}">Início</a></li>
+                <li><a href="{% url 'livros' %}">Livros</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="max-w-3xl mx-auto p-6">
         {% block content %}{% endblock %}
     </main>
 </body>

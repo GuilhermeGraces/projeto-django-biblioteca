@@ -1,7 +1,23 @@
-<div class="livro">
-    <form hx-post="{% url 'editar' livro.pk %}" hx-target="closest .livro" hx-swap="outerHTML">
-        {% csrf_token %}
-        {{ form.as_p}}
-        <button type="submit">Salvar</button>
-    </form>
+<div class="livro card bg-base-100 shadow-sm border border-primary">
+    <div class="card-body">
+        <h2 class="card-title">Editando livro</h2>
+
+        <form hx-post="{% url 'editar' livro.pk %}" hx-target="closest .livro" hx-swap="outerHTML">
+            {% csrf_token %}
+
+            {% for field in form %}
+                <fieldset class="fieldset">
+                    <legend class="fieldset-legend">{{ field.label }}</legend>
+                    {{ field }}
+                    {% for erro in field.errors %}
+                        <p class="text-error">{{ erro }}</p>
+                    {% endfor %}
+                </fieldset>
+            {% endfor %}
+
+            <div class="card-actions justify-end mt-4">
+                <button type="submit" class="btn btn-sm btn-primary">Salvar</button>
+            </div>
+        </form>
+    </div>
 </div>
