@@ -1,5 +1,4 @@
 from django.db import models
-from django.core.validators import MinValueValidator
 
 # Create your models here.
 class Autor(models.Model):
@@ -12,7 +11,6 @@ class Autor(models.Model):
 class Livro(models.Model):
     titulo = models.CharField(max_length=100)
     autor = models.ForeignKey(Autor, on_delete=models.PROTECT)
-    preco = models.DecimalField(max_digits=5, decimal_places=2, validators=[MinValueValidator(0)])
     
     def __str__(self):
         return f"{self.titulo}"

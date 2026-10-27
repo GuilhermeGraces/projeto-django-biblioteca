@@ -2,7 +2,6 @@
     <div class="card-body">
         <h2 class="card-title">{{ livro.titulo }}</h2>
         <p class="text-base-content/70">{{ livro.autor }}</p>
-        <p class="text-lg font-semibold">R$ {{ livro.preco }}</p>
 
         <div class="card-actions justify-end">
             <button class="btn btn-sm btn-outline" hx-get="{% url 'editar' livro.pk %}" hx-target="closest .livro" hx-swap="outerHTML">Editar</button>
