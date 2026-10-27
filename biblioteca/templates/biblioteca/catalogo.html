@@ -1,0 +1,16 @@
+{% extends "biblioteca/base.html" %}
+
+{% block title %}Catálogo{% endblock %}
+
+{% block content %}
+    <h1>Catálogo</h1>
+
+    {% for genero in generos %}
+        {% if genero.livro_set.exists %}
+            <h2>{{genero.nome}}</h2>
+            {% for livro in genero.livro_set.all %}
+                <p>{{livro.titulo}}</p>
+            {% endfor %}
+        {% endif %}
+    {% endfor %}
+{% endblock %}

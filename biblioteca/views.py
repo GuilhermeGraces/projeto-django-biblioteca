@@ -4,7 +4,7 @@ from django.core.paginator import Paginator
 from django.http import HttpResponse
 from .forms import LivroForm
 
-from .models import Livro
+from .models import Genero, Livro
 
 # Create your views here.
 def home(request):
@@ -44,6 +44,8 @@ def editar(request, pk):
     return render(request, "biblioteca/partials/livro_form.html", {"form": form, "livro":livro})
 
 
-
+def catalogo(request):
+    generos = Genero.objects.order_by("nome")
+    return render(request, "biblioteca/catalogo.html", {"generos":generos})
 
     
