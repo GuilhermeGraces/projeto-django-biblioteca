@@ -11,6 +11,8 @@ def home(request):
     return render(request, "biblioteca/home.html")
 
 def livros(request):
+    if not request.user.is_staff:
+        return redirect("home")
     lista_livros = Livro.objects.order_by("titulo")
     paginator = Paginator(lista_livros, 2)
 
@@ -22,11 +24,15 @@ def livros(request):
 
 @require_POST
 def deletar(request, pk):
+    if not request.user.is_staff:
+            return redirect("home")
     livro= get_object_or_404(Livro, pk=pk)
     livro.delete()
     return HttpResponse("")
 
 def editar(request, pk):
+    if not request.user.is_staff:
+            return redirect("home")
     livro = get_object_or_404(Livro, pk=pk)
     if request.method == "POST":
         form= LivroForm(request.POST, instance=livro)

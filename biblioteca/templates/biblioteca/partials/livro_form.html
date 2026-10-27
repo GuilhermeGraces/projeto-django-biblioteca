@@ -6,7 +6,9 @@
             {% csrf_token %}
 
             {% for field in form %}
-                <fieldset class="fieldset">
+            <!-- esse fieldset tem a função de uma div -->
+                <fieldset class="fieldset"> 
+                    <!-- esse legend tem a função de um paragrafo -->
                     <legend class="fieldset-legend">{{ field.label }}</legend>
                     {{ field }}
                     {% for erro in field.errors %}
