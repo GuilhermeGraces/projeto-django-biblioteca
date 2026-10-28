@@ -1,3 +1,4 @@
+from django.views.generic import DetailView
 from django.shortcuts import get_object_or_404, redirect, render
 from django.views.decorators.http import require_POST
 from django.core.paginator import Paginator
@@ -47,5 +48,11 @@ def editar(request, pk):
 def catalogo(request):
     generos = Genero.objects.order_by("nome")
     return render(request, "biblioteca/catalogo.html", {"generos":generos})
+
+
+class InspecionarView(DetailView):
+     model= Livro
+     template_name= "biblioteca/inspecionar.html"
+     context_object_name= "livro"
 
     
