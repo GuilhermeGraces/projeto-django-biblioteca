@@ -7,16 +7,26 @@
     <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css">
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <script src="https://unpkg.com/htmx.org@2.0.4"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;600;700&display=swap" rel="stylesheet">
+    <style type="text/tailwindcss">
+        @theme {
+            --font-serif: "Fraunces", serif;
+        }
+    </style>
 </head>
-<body class="min-h-screen bg-base-200">
-    <header class="navbar bg-base-100 shadow-sm px-4">
+<body class="min-h-screen {% block fundo %}bg-base-200{% endblock %}">
+    <header class="navbar sticky top-0 z-99 {% block fundo_nav %}bg-inherit{% endblock %} border-b border-stone-300 px-4">
         <div class="flex-1">
-            <a href="{% url 'home' %}" class="btn btn-ghost text-xl">Biblioteca</a>
+            <a href="{% url 'home' %}" class="btn btn-ghost font-serif text-2xl">Biblioteca</a>
         </div>
         <nav class="flex-none">
             <ul class="menu menu-horizontal gap-1">
                 <li><a href="{% url 'home' %}">Início</a></li>
-                <li><a href="{% url 'livros' %}">Livros</a></li>
+                {% if user.is_staff %}
+                    <li><a href="{% url 'livros' %}">Livros</a></li>
+                {% else %}
+                    <li><a href="{% url 'catalogo' %}">Catálogo</a></li>
+                {% endif %}
             </ul>
         </nav>
     </header>

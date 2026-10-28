@@ -2,17 +2,21 @@
 
 {% block title %}Home{% endblock %}
 
+{% block fundo %}bg-amber-50{% endblock %}
 {% block content %}
-    <div class="hero bg-base-100 rounded-box shadow-sm py-12">
+    <div class="hero bg-white rounded-box border border-stone-200 shadow-lg py-16">
         <div class="hero-content text-center">
             <div>
-                {% if user.is_authenticated %}
-                    <h1 class="text-4xl font-bold">Olá, {{ user.username }}!</h1>
+                {% if user.is_staff %}
+                    <h1 class="font-serif text-5xl font-semibold text-stone-800">Olá, {{ user.username }}!</h1>
+                    <p class="py-6 text-lg text-stone-600">Consulte, edite e organize os livros da biblioteca.</p>
+                    <a href="{% url 'livros' %}" class="btn bg-amber-900 hover:bg-amber-800 text-amber-50 border-none">Ver livros</a>
                 {% else %}
-                    <h1 class="text-4xl font-bold">Olá, Visitante!</h1>
+                    <h1 class="font-serif text-5xl font-semibold text-stone-800">Olá, Visitante!</h1>
+                    <p class="py-6 text-lg text-stone-600">Converse, interaja e opine sobre os livros da biblioteca.</p>
+                    <a href="{% url 'catalogo' %}" class="btn bg-amber-900 hover:bg-amber-800 text-amber-50 border-none">Ver catálogo</a>
                 {% endif %}
-                <p class="py-4 text-base-content/70">Consulte, edite e organize os livros da biblioteca.</p>
-                <a href="{% url 'livros' %}" class="btn btn-primary">Ver livros</a>
+                
             </div>
         </div>
     </div>
