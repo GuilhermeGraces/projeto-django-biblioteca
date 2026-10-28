@@ -14,7 +14,7 @@ def livros(request):
     if not request.user.is_staff:
         return redirect("home")
     lista_livros = Livro.objects.order_by("titulo")
-    paginator = Paginator(lista_livros, 2)
+    paginator = Paginator(lista_livros, 4)
 
     numero_pagina = request.GET.get("page")
     page_obj = paginator.get_page(numero_pagina)
