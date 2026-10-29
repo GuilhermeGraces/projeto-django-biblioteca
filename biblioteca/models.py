@@ -24,3 +24,13 @@ class Livro(models.Model):
     
     def __str__(self):
         return f"{self.titulo}"
+
+class Cartaz(models.Model):
+    livro= models.ForeignKey(Livro, on_delete=models.CASCADE)
+    nome = models.CharField(max_length=50)
+    texto = models.TextField(max_length=500)
+    recomenda = models.BooleanField()
+    data = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.nome} sobre {self.livro}"
