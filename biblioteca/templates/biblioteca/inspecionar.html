@@ -24,7 +24,30 @@
     </div>
 </div>
 
-<h2 class="font-serif text-2xl font-semibold text-stone-800 mt-12 mb-4">Cartazes</h2>
+<details class="mt-12 mb-6">
+
+    <summary class="list-none flex items-center justify-between cursor-pointer">
+        <h2 class="font-serif text-2xl font-semibold text-stone-800">Comentários</h2>
+        <span class="btn btn-sm bg-amber-900 hover:bg-amber-800 text-amber-50 border-none">Comentar</span>
+    </summary>
+
+    <form class="card bg-white border border-stone-200 shadow mt-4">
+        <div class="card-body gap-3">
+
+            <!-- bglh de escrever os textos -->
+            <input type="text" name="nome" placeholder="Digite seu nome" maxlength="50" required class="input w-full">
+            <textarea name="texto" placeholder="O que você achou do livro?" maxlength="500" required class="textarea w-full"></textarea>
+            
+            <!-- aqui vao ser os botoes -->
+            <div class="flex flex-wrap gap-2 items-center">
+                <input type="radio" name="avaliacao" value="recomendo" aria-label="Recomendo👍" class="btn btn-sm checked:bg-green-700 checked:text-white">
+                <input type="radio" name="avaliacao" value="nao_recomendo" aria-label="Não recomendo👎" class="btn btn-sm checked:bg-red-700 checked:text-white">
+                <button type="submit" class="btn btn-sm bg-amber-900 hover:bg-amber-800 text-amber-50 border-none ml-auto">Publicar</button>
+            </div>
+        </div>
+    </form>
+
+</details>
 
 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
     {% for cartaz in livro.cartaz_set.all %}
@@ -40,7 +63,7 @@
                     {% elif cartaz.avaliacao == "nao_recomendo" %}
                         <span class="badge bg-red-700 text-white border-none">Não recomendo🤢</span>
                     {% else %}
-                        <span class="badge bg-red-700 text-white border-none">Neutro👻</span>
+                        <span class="badge bg-stone-300 text-stone-700 border-none">Neutro👻</span>
                     {% endif %}
                 </div>
             </div>
